@@ -124,3 +124,15 @@ mongo_install(
         "//src/mongo/db/modules/enterprise:dist-test",
     ],
 )
+
+platform(
+    name = "darwin_arm64",
+    constraint_values = [
+        "@platforms//os:macos",
+        "@platforms//cpu:arm64",
+    ],
+    exec_properties = {
+        "OSFamily": "Darwin",
+        "Arch": "arm64",
+    },
+)

@@ -6,7 +6,6 @@ import time
 
 sys.path.append(".")
 
-from buildscripts.engflow_auth import setup_auth
 from buildscripts.install_bazel import install_bazel
 
 # do not print to stdout as that is used for arg modifications
@@ -61,20 +60,6 @@ def get_buildozer_output(autocomplete_query):
         sys.exit(1)
 
     return p.stdout
-
-
-def engflow_auth(args):
-    start = time.time()
-    args_str = " ".join(args)
-    if (
-        "--config=local" not in args_str
-        and "--config=public-release" not in args_str
-        and "--config local" not in args_str
-        and "--config public-release" not in args_str
-    ):
-        if os.environ.get("CI") is None:
-            setup_auth(verbose=False)
-    wrapper_debug(f"engflow auth time: {time.time() - start}")
 
 
 def test_runner_interface(args, autocomplete_query, get_buildozer_output=get_buildozer_output):
@@ -228,8 +213,6 @@ def test_runner_interface(args, autocomplete_query, get_buildozer_output=get_bui
 
     return new_args
 
-
-engflow_auth(sys.argv)
 
 args = test_runner_interface(
     sys.argv, autocomplete_query=os.environ.get("MONGO_AUTOCOMPLETE_QUERY") == "1"

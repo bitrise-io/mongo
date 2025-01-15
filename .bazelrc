@@ -141,7 +141,7 @@ common --//bazel/config:debug_symbols=True
 common --//bazel/config:separate_debug=False
 common --//bazel/config:compiler_type=clang
 common --//bazel/config:linkstatic=True
-common --//bazel/config:build_enterprise=True
+common --//bazel/config:build_enterprise=False
 common --//bazel/config:release=False
 common --//bazel/config:skip_archive=True
 common --//bazel/config:allocator=auto
@@ -165,7 +165,7 @@ common:fastbuild --//bazel/config:debug_symbols=True
 common:fastbuild --//bazel/config:separate_debug=False
 common:fastbuild --//bazel/config:compiler_type=clang
 common:fastbuild --//bazel/config:linkstatic=True
-common:fastbuild --//bazel/config:build_enterprise=True
+common:fastbuild --//bazel/config:build_enterprise=False
 common:fastbuild --//bazel/config:release=False
 common:fastbuild --//bazel/config:skip_archive=True
 common:fastbuild --//bazel/config:allocator=auto
@@ -270,7 +270,7 @@ coverage --fission=no
 
 # Don't detect the native toolchain on linux, only use the hermetic toolchains.
 # Opt out of this by passing --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=0 on the command line.
-common:linux --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+#common:linux --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 
 # Disable the default compiler flags to avoid certain flags that conflict with flags we setup.
 common:windows --features=-smaller_binary
@@ -307,17 +307,24 @@ common:windows --cxxopt=-UCOMPILER_MSVC
 # the engflow cluster. External builders should use the --config=local option
 
 # Enable remote build execution:
-common:linux --remote_executor=grpcs://sodalite.cluster.engflow.com
+#common:linux --remote_executor=grpcs://sodalite.cluster.engflow.com
 
 # Enable remote cache (also necessary for remote build execution):
-common --remote_cache=grpcs://sodalite.cluster.engflow.com
-common --bes_backend=grpcs://sodalite.cluster.engflow.com
-common --bes_results_url=https://sodalite.cluster.engflow.com/invocation/
-common --remote_cache_compression=true 
+#common --remote_cache=grpcs://sodalite.cluster.engflow.com
+#common --bes_backend=grpcs://sodalite.cluster.engflow.com
+#common --bes_results_url=https://sodalite.cluster.engflow.com/invocation/
+common --remote_cache_compression=true
 common --grpc_keepalive_time=30s
 common --nolegacy_important_outputs
-common --bes_keywords=repo:mongo
+#common --bes_keywords=repo:mongo
 common --remote_upload_local_results=False
+common --macos_sdk_version=15.2
+
+build:remote_bitrise --jobs=100
+build:remote_bitrise --remote_download_minimal
+build:remote_bitrise --noremote_upload_local_results
+build:remote_bitrise --extra_execution_platforms=//:darwin_arm64
+
 
 # Settings specific for clang-tidy
 --config=clang-tidy
