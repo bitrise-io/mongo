@@ -1734,7 +1734,7 @@ def mongo_cc_library(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:gcc_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })
@@ -1745,7 +1745,7 @@ def mongo_cc_library(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:any_sanitizer_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })
@@ -1756,7 +1756,7 @@ def mongo_cc_library(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:linux_gcc_fission_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })
@@ -2031,7 +2031,7 @@ def _mongo_cc_binary_and_test(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:gcc_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })
@@ -2042,7 +2042,7 @@ def _mongo_cc_binary_and_test(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:any_sanitizer_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })
@@ -2053,7 +2053,7 @@ def _mongo_cc_binary_and_test(
                 "Pool": "large_mem_x86_64",
             },
             "//bazel/config:linux_gcc_fission_aarch64": {
-                "Pool": "large_memory_arm64",
+                # "Pool": "large_memory_arm64",
             },
             "//conditions:default": {},
         })

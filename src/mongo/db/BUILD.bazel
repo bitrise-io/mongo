@@ -3562,7 +3562,7 @@ mongo_cc_binary(
             "Pool": "large_mem_x86_64",
         },
         "@platforms//cpu:aarch64": {
-            "Pool": "large_memory_arm64",
+            # "Pool": "large_memory_arm64",
         },
         "//conditions:default": {},
     }),
